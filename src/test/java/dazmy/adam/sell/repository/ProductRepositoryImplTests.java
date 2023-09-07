@@ -107,4 +107,25 @@ public class ProductRepositoryImplTests {
         // can't find the ID
         Assertions.assertFalse(isSuccessUpdate);
     }
+
+    @Test
+    void testUpdateCategory() throws SQLException {
+        Connection connection = hikariDataSource.getConnection();
+        boolean isSuccessUpdate = productRepository.updateCategory(3, Category.valueOf("Drink"));
+
+        connection.close();
+
+        Assertions.assertTrue(isSuccessUpdate);
+    }
+
+    @Test
+    void testUpdateCategoryError() throws SQLException {
+        Connection connection = hikariDataSource.getConnection();
+        boolean isSuccessUpdate = productRepository.updateCategory(1, Category.valueOf("Other"));
+
+        connection.close();
+
+        // can't find the ID
+        Assertions.assertFalse(isSuccessUpdate);
+    }
 }

@@ -142,4 +142,23 @@ public class ProductRepositoryImpl implements ProductRepository {
             return false;
         }
     }
+
+    @Override
+    public boolean updateCategory(int id, Category newCategory) {
+        if (this.get(id) == null) {
+            return false;
+        }
+
+        String sql = "UPDATE products SET category = ? WHERE id = ?";
+        try (Connection connection = hikariDataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, newCategory.toString());
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 }

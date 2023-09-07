@@ -1,5 +1,6 @@
 package dazmy.adam.sell.repository;
 
+import dazmy.adam.sell.entity.Category;
 import dazmy.adam.sell.entity.Product;
 
 import java.util.List;
@@ -46,4 +47,12 @@ public interface ProductRepository {
      * @return boolean
      */
     boolean updatePrice(int id, Integer newPrice);
+
+    /**
+     * update product category
+     * @param id int
+     * @param newCategory Category
+     * @return boolean
+     */
+    boolean updateCategory(int id, Category newCategory);
 }

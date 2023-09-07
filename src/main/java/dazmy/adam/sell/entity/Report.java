@@ -4,33 +4,33 @@ import java.sql.Timestamp;
 
 public class Report {
     private int id;
-    private int product_id;
-    private int many_product;
-    private int left_product;
+    private int productId;
+    private int manyProduct;
+    private int leftProduct;
     private Integer money;
-    private Timestamp created_at;
-    private Timestamp updated_at;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 
     public Report() {
     }
 
-    public Report(int product_id, int many_product, int left_product, Integer money, Timestamp created_at, Timestamp updated_at) {
-        this.product_id = product_id;
-        this.many_product = many_product;
-        this.left_product = left_product;
+    public Report(int productId, int manyProduct, int leftProduct, Integer money, Timestamp createdAt, Timestamp updatedAt) {
+        this.productId = productId;
+        this.manyProduct = manyProduct;
+        this.leftProduct = leftProduct;
         this.money = money;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public Report(int id, int product_id, int many_product, int left_product, Integer money, Timestamp created_at, Timestamp updated_at) {
+    public Report(int id, int productId, int manyProduct, int leftProduct, Integer money, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
-        this.product_id = product_id;
-        this.many_product = many_product;
-        this.left_product = left_product;
+        this.productId = productId;
+        this.manyProduct = manyProduct;
+        this.leftProduct = leftProduct;
         this.money = money;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getId() {
@@ -41,28 +41,28 @@ public class Report {
         this.id = id;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
-    public int getMany_product() {
-        return many_product;
+    public int getManyProduct() {
+        return manyProduct;
     }
 
-    public void setMany_product(int many_product) {
-        this.many_product = many_product;
+    public void setManyProduct(int manyProduct) {
+        this.manyProduct = manyProduct;
     }
 
-    public int getLeft_product() {
-        return left_product;
+    public int getLeftProduct() {
+        return leftProduct;
     }
 
-    public void setLeft_product(int left_product) {
-        this.left_product = left_product;
+    public void setLeftProduct(int leftProduct) {
+        this.leftProduct = leftProduct;
     }
 
     public Integer getMoney() {
@@ -73,20 +73,20 @@ public class Report {
         this.money = money;
     }
 
-    public Timestamp getCreated_at() {
-        return created_at;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Timestamp getUpdated_at() {
-        return updated_at;
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Timestamp updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -97,23 +97,23 @@ public class Report {
         Report report = (Report) o;
 
         if (id != report.id) return false;
-        if (product_id != report.product_id) return false;
-        if (many_product != report.many_product) return false;
-        if (left_product != report.left_product) return false;
+        if (productId != report.productId) return false;
+        if (manyProduct != report.manyProduct) return false;
+        if (leftProduct != report.leftProduct) return false;
         if (!money.equals(report.money)) return false;
-        if (!created_at.equals(report.created_at)) return false;
-        return updated_at.equals(report.updated_at);
+        if (!createdAt.equals(report.createdAt)) return false;
+        return updatedAt.equals(report.updatedAt);
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + product_id;
-        result = 31 * result + many_product;
-        result = 31 * result + left_product;
+        result = 31 * result + productId;
+        result = 31 * result + manyProduct;
+        result = 31 * result + leftProduct;
         result = 31 * result + money.hashCode();
-        result = 31 * result + created_at.hashCode();
-        result = 31 * result + updated_at.hashCode();
+        result = 31 * result + createdAt.hashCode();
+        result = 31 * result + updatedAt.hashCode();
         return result;
     }
 
@@ -121,12 +121,12 @@ public class Report {
     public String toString() {
         return "Report{" +
                 "id=" + id +
-                ", product_id=" + product_id +
-                ", many_product=" + many_product +
-                ", left_product=" + left_product +
+                ", productId=" + productId +
+                ", manyProduct=" + manyProduct +
+                ", leftProduct=" + leftProduct +
                 ", money=" + money +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

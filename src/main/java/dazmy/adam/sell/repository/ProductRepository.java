@@ -31,5 +31,19 @@ public interface ProductRepository {
      */
     Product get(String name);
 
+    /**
+     * update product name
+     * @param id int
+     * @param newName String
+     * @return boolean
+     */
     boolean updateName(int id, String newName);
+
+    /**
+     * update product price
+     * @param id int
+     * @param newPrice Integer
+     * @return boolean
+     */
+    boolean updatePrice(int id, Integer newPrice);
 }

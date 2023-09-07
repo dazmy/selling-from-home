@@ -86,4 +86,25 @@ public class ProductRepositoryImplTests {
 
         Assertions.assertFalse(isSuccessUpdate);
     }
+
+    @Test
+    void testUpdatePrice() throws SQLException {
+        Connection connection = hikariDataSource.getConnection();
+        boolean isSuccessUpdate = productRepository.updatePrice(6, 10000);
+
+        connection.close();
+
+        Assertions.assertTrue(isSuccessUpdate);
+    }
+
+    @Test
+    void testUpdatePriceError() throws SQLException {
+        Connection connection = hikariDataSource.getConnection();
+        boolean isSuccessUpdate = productRepository.updatePrice(1, 10000);
+
+        connection.close();
+
+        // can't find the ID
+        Assertions.assertFalse(isSuccessUpdate);
+    }
 }

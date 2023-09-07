@@ -30,4 +30,6 @@ public interface ProductRepository {
      * @return Product
      */
     Product get(String name);
+
+    boolean updateName(int id, String newName);
 }

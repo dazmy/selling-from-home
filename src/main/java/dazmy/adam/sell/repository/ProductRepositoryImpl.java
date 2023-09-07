@@ -104,4 +104,23 @@ public class ProductRepositoryImpl implements ProductRepository {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public boolean updateName(int id, String newName) {
+        if (this.get(id) == null) {
+            return false;
+        }
+
+        String sql = "UPDATE products SET name = ? WHERE id = ?";
+        try (Connection connection = hikariDataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, newName);
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 }

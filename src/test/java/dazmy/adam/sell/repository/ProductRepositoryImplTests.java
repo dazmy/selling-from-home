@@ -66,4 +66,24 @@ public class ProductRepositoryImplTests {
         Assertions.assertNotNull(product1);
         Assertions.assertNotNull(product2);
     }
+
+    @Test
+    void testUpdateName() throws SQLException {
+        Connection connection = hikariDataSource.getConnection();
+        boolean isSuccessUpdate = productRepository.updateName(3, "Nasi Goreng");
+
+        connection.close();
+
+        Assertions.assertTrue(isSuccessUpdate);
+    }
+
+    @Test
+    void testUpdateNameError() throws SQLException {
+        Connection connection = hikariDataSource.getConnection();
+        boolean isSuccessUpdate = productRepository.updateName(3, "Mie Goreng");
+
+        connection.close();
+
+        Assertions.assertFalse(isSuccessUpdate);
+    }
 }

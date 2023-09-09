@@ -34,10 +34,49 @@ public class ProductRepositoryImpl implements ProductRepository {
 
                 products.add(product);
             }
+
+            return products;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return products;
+    }
+
+    @Override
+    public List<Product> getWhere(String where, String query) {
+        String sqlName = "SELECT * FROM products WHERE name = ?";
+        String sqlPrice = "SELECT * FROM products WHERE price = ?";
+        String sqlCategory = "SELECT * FROM products WHERE category = ?";
+        List<Product> products = new ArrayList<>();
+
+        try (Connection connection = hikariDataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     (where.equals("price") ? sqlPrice : where.equals("name") ? sqlName : sqlCategory)
+             )) {
+            if (where.equals("price")) {
+                preparedStatement.setInt(1, Integer.parseInt(query));
+            } else {
+                preparedStatement.setString(1, query);
+            }
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+                    Integer price = resultSet.getInt("price");
+                    Category category = Category.valueOf(resultSet.getString("category"));
+                    Timestamp createdAt = resultSet.getTimestamp("created_at");
+                    Timestamp updatedAt = resultSet.getTimestamp("updated_at");
+                    Product product = new Product(id, name, price, category, createdAt, updatedAt);
+
+                    products.add(product);
+                }
+
+                return products;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

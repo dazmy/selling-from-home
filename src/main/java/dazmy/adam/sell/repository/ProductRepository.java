@@ -13,6 +13,14 @@ public interface ProductRepository {
     List<Product> getAll();
 
     /**
+     * Show all products using query where
+     * @param where String
+     * @param query String
+     * @return List<Product>
+     */
+    List<Product> getWhere(String where, String query);
+
+    /**
      * Add product into the database
      * @param product product
      */

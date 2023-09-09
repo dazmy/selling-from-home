@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepositoryImplTests {
@@ -36,8 +36,28 @@ public class ProductRepositoryImplTests {
         connection.close();
 
         // make sure you have at least one data
-        Assertions.assertTrue(all.size() > 0);
+        Assertions.assertFalse(all.isEmpty());
         all.forEach(System.out::println);
+    }
+
+    @Test
+    void testGetWhere() throws SQLException {
+        Connection connection = hikariDataSource.getConnection();
+        List<Product> products = productRepository.getWhere("category", "Food");
+        connection.close();
+
+        Assertions.assertFalse(products.isEmpty());
+        products.forEach(System.out::println);
+    }
+
+    @Test
+    void testGetWhereError() throws SQLException {
+        Connection connection = hikariDataSource.getConnection();
+        Assertions.assertThrows(NumberFormatException.class, () -> {
+            List<Product> products = productRepository.getWhere("price", "error");
+        });
+
+        connection.close();
     }
 
     @Test
